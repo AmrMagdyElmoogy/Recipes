@@ -1,0 +1,32 @@
+class ValuesManager {
+  static const double vOpicity = 0.8;
+  static const double vElevation = 2;
+  static const double v5 = 5;
+  static const double v10 = 10;
+  static const double v15 = 15;
+  static const double v16 = 16;
+  static const double v20 = 20;
+  static const double v30 = 30;
+  static const double v40 = 40;
+  static const double v50 = 50;
+  static const double v60 = 60;
+  static const double v70 = 70;
+  static const double v80 = 80;
+  static const double v90 = 90;
+  static const double v100 = 100;
+  static const double v110 = 110;
+  static const double v120 = 120;
+  static const double v130 = 130;
+  static const double v140 = 140;
+  static const double v150 = 150;
+  static const double v160 = 160;
+  static const double v170 = 170;
+  static const double v180 = 180;
+  static const double v190 = 190;
+  static const double v200 = 200;
+  static const double v210 = 210;
+  static const double v230 = 230;
+  static const double v250 = 250;
+  static const double v280 = 280;
+  static const double v300 = 300;
+}
