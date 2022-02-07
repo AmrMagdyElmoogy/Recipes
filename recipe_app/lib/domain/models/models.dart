@@ -22,7 +22,7 @@ class RecipeVegetarianOrDessert {
     return RecipeVegetarianOrDessert(
       id: json['id'],
       healthScore: json['healthScore'] ?? 0,
-      ingredient: ing ,
+      ingredient: ing,
       title: json['title'] ?? "",
       readyInMinutes: json['readyInMinutes'] ?? 0,
       img: json['image'] ?? AssetManager.food,
@@ -35,10 +35,19 @@ class Ingredients {
   late String nameClean;
   late String unit;
   late double amount;
-  Ingredients({required this.nameClean, required this.unit, required this.amount});
+  Ingredients(
+      {required this.nameClean, required this.unit, required this.amount});
   Ingredients.fromJson(Map<String, dynamic> json) {
     nameClean = json['nameClean'] ?? "";
     unit = json['unit'] ?? "";
     amount = json['amount'] ?? 0.0;
   }
+}
+
+class NutrientInfo {
+  late String image;
+  late String value;
+  late String kind;
+
+  NutrientInfo({required this.image, required this.value, required this.kind});
 }

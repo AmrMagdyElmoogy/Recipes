@@ -17,8 +17,10 @@ class StringsManager {
       'Keep your healthy left with healthy food';
   static const String proteinGrames = '421g';
   static const String noOfCalories = '1021kgcl';
+  static const String carbs = 'Carbs';
   static const String protein = 'Protein';
   static const String calories = 'Calories';
+  static const String fat = 'Fat';
   static const String category = 'Category';
   static const String vegetarianTab = 'Vegetarian';
   static const String dessertTab = 'Dessert';
@@ -30,4 +32,9 @@ class StringsManager {
   static const String dot = '.';
   static const String noFavFirst = 'No Favorities Items Yet!';
   static const String noFavSecond = 'Let\'s add some favorities items!';
+  static const String descriptionOfReicpe =
+      'This fresh, easy recipe makes a filling lunch or fun dinner';
+  static const String ingredients = 'Ingredients';
+  static const String instructions = 'Instructions';
+  static const String item = 'Item';
 }

@@ -4,6 +4,7 @@ import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
 import 'package:recipe_app/presentation/resources/font_manager.dart';
+import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
 
@@ -66,13 +67,24 @@ class VegatrianItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: ValuesManager.v250,
-          height: ValuesManager.v280,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(ValuesManager.v16),
-            image: DecorationImage(
-                image: NetworkImage(recipe.img), fit: BoxFit.cover),
+        InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              Routes.ingredient,
+              arguments: recipe,
+            );
+          },
+          child: Hero(
+            tag: recipe.id,
+            child: Container(
+              width: ValuesManager.v250,
+              height: ValuesManager.v280,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(ValuesManager.v16),
+                image: DecorationImage(
+                    image: NetworkImage(recipe.img), fit: BoxFit.cover),
+              ),
+            ),
           ),
         ),
         Positioned(
@@ -101,25 +113,14 @@ class VegatrianItem extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          StringsManager.caloriesOfRecipe,
-                          style: Theme.of(context)
-                              .textTheme
-                              .caption!
-                              .copyWith(color: Colors.white),
-                        ),
-                        Text(
-                          StringsManager.dot,
-                          style: Theme.of(context)
-                              .textTheme
-                              .caption!
-                              .copyWith(color: Colors.white),
-                        ),
-                        Text(
-                          recipe.readyInMinutes.toString() +
+                          StringsManager.caloriesOfRecipe +
+                              StringsManager.dot +
+                              recipe.readyInMinutes.toString() +
                               StringsManager.plusMinutes,
-                          style: Theme.of(context).textTheme.caption!.copyWith(
-                              color: Colors.white,
-                              fontSize: FontSizeManager.s16),
+                          style: Theme.of(context)
+                              .textTheme
+                              .caption!
+                              .copyWith(color: Colors.white),
                         ),
                         IconButton(
                           iconSize: ValuesManager.v30,
@@ -133,16 +134,16 @@ class VegatrianItem extends StatelessWidget {
                               cubit.deleteFromFavorities(recipe);
                             }
                           },
-                          icon:
-                              state.favoritiesRecipeVegColors![index] == StringsManager.falseString
-                                  ? const Icon(
-                                      Icons.favorite_outlined,
-                                      color: Colors.white,
-                                    )
-                                  : const Icon(
-                                      Icons.favorite_outlined,
-                                      color: Colors.red,
-                                    ),
+                          icon: state.favoritiesRecipeVegColors![index] ==
+                                  StringsManager.falseString
+                              ? const Icon(
+                                  Icons.favorite_outlined,
+                                  color: Colors.white,
+                                )
+                              : const Icon(
+                                  Icons.favorite_outlined,
+                                  color: Colors.red,
+                                ),
                         ),
                       ],
                     ),

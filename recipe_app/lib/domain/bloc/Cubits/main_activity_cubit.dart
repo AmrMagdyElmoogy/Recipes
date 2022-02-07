@@ -26,7 +26,7 @@ class MainActivityCubit extends Cubit<RecipeStates> {
   @override
   void onChange(Change<RecipeStates> change) {
     super.onChange(change);
-    print(change);
+    print(change.currentState.status);
   }
 
   int navBarIndex = 0;

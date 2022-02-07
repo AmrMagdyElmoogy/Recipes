@@ -4,7 +4,6 @@ import 'package:recipe_app/app/functions.dart';
 import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
-import 'package:recipe_app/presentation/resources/font_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
 
@@ -21,7 +20,9 @@ class _FavouritesState extends State<Favourites> {
     return BlocConsumer<MainActivityCubit, RecipeStates>(
       listener: (context, state) {
         if (MainActivityCubit().favorities.isEmpty) {
-          noFavoritiesItem(context);
+         const Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
       builder: (context, state) {

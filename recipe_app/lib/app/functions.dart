@@ -26,3 +26,8 @@ Widget noFavoritiesItem(BuildContext context) {
     ],
   );
 }
+
+String removeUnWantedWords(String s) {
+  s.replaceAll(RegExp("<p>|</p>|<span>|</span>|<li>|</li>|<ol>|</ol>|"), "");
+  return s;
+}

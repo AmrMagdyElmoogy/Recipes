@@ -7,7 +7,7 @@ TextTheme applicationTextTheme = TextTheme(
   headline1: GoogleFonts.nunito(
       fontWeight: FontWeight.w800,
       color: Colors.white,
-      fontSize: FontSizeManager.s35),
+      fontSize: FontSizeManager.s25),
   headline6: GoogleFonts.nunito(
       fontWeight: FontWeightManager.w700,
       color: Colors.black,

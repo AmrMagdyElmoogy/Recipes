@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
+import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
 
@@ -65,13 +66,21 @@ class DessertItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: ValuesManager.v250,
-          height: ValuesManager.v280,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(ValuesManager.v16),
-            image: DecorationImage(
-                image: NetworkImage(recipe.img), fit: BoxFit.cover),
+        InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(Routes.ingredient);
+          },
+          child: Hero(
+            tag: recipe.id,
+            child: Container(
+              width: ValuesManager.v250,
+              height: ValuesManager.v280,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(ValuesManager.v16),
+                image: DecorationImage(
+                    image: NetworkImage(recipe.img), fit: BoxFit.cover),
+              ),
+            ),
           ),
         ),
         Positioned(
