@@ -1,8 +1,10 @@
 class StringsManager {
   static const String baseUrl = 'https://api.spoonacular.com/recipes';
-  static const String endPoint = '/random';
+  static const String endPointRandom = '/random';
+  static const String endPointFindByIngredient = '/findByIngredients';
   static const String vegetarian = 'vegetarian';
   static const String dessert = 'dessert';
+  static const String ingredient = 'ingredients';
   static const String numberOfRecipe = '10';
   static const String apiKey = 'd00ecba33ddf4b90b0fa32589ed604a8';
   static const String splashTextHeadline = 'Cooking Experience Like Chef';
@@ -37,4 +39,5 @@ class StringsManager {
   static const String ingredients = 'Ingredients';
   static const String instructions = 'Instructions';
   static const String item = 'Item';
+  static const String inYourFridge = 'What\'s in your fridge?';
 }

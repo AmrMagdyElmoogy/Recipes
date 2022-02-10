@@ -6,9 +6,9 @@ import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
 import 'package:recipe_app/domain/repository/repository.dart';
 import 'package:recipe_app/presentation/activity/activity.dart';
-import 'package:recipe_app/presentation/converter/converter.dart';
 import 'package:recipe_app/presentation/favourites/favourites.dart';
 import 'package:recipe_app/presentation/home/home.dart';
+import 'package:recipe_app/presentation/search/search_ingredient.dart';
 
 class MainActivityCubit extends Cubit<RecipeStates> {
   MainActivityCubit()
@@ -20,7 +20,7 @@ class MainActivityCubit extends Cubit<RecipeStates> {
     const HomeScreen(),
     const Activity(),
     const Favourites(),
-    const Converter(),
+    const SearchIngredient(),
   ];
 
   @override

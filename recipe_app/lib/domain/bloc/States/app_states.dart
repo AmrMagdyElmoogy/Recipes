@@ -15,6 +15,7 @@ enum RecipeStateStatus {
   initalizeFavoritiesIndexes,
   refreshFavoritiesItems,
 }
+enum IngredientSearchStatus { inital, loading, success, failure }
 
 class RecipeStates {
   RecipeStateStatus? status;
@@ -24,7 +25,6 @@ class RecipeStates {
   List<String>? favoritiesRecipeDesColors;
   Exception? exception;
 
-  
   RecipeStates(
       {this.status,
       this.recipesOfVegatrian,
@@ -51,5 +51,28 @@ class RecipeStates {
       favoritiesRecipeDesColors:
           favoritiesRecipeDesColors ?? this.favoritiesRecipeDesColors,
     );
+  }
+}
+
+class IngredientSearchStates {
+  IngredientSearchStatus? status;
+  List<IngredientSearch>? items;
+  Exception? exception;
+
+  IngredientSearchStates({
+     this.status,
+     this.items,
+     this.exception,
+  });
+
+  IngredientSearchStates copyWith({
+    IngredientSearchStatus? status,
+    List<IngredientSearch>? items,
+    Exception? exception,
+  }) {
+    return IngredientSearchStates(
+        status: status ?? this.status,
+        items: items ?? this.items,
+        exception: exception ?? this.exception);
   }
 }

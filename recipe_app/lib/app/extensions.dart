@@ -35,3 +35,9 @@ extension StringExtension on String {
       return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
     }
 }
+
+extension StringExtensi on String {
+    String toLower() {
+      return "${this[0].toLowerCase()}${this.substring(1).toLowerCase()}";
+    }
+}

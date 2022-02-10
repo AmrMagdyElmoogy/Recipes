@@ -63,18 +63,18 @@ class IngredientItem extends StatelessWidget {
                           .copyWith(color: Colors.grey),
                     ),
                     whiteSpaceHeight(10),
-                    // SizedBox(
-                    //   width: 250,
-                    //   child: ListView.separated(
-                    //       scrollDirection: Axis.horizontal,
-                    //       itemBuilder: (context, index) => NutrientsInfoItem(
-                    //             items: items,
-                    //             index: index,
-                    //           ),
-                    //       separatorBuilder: (context, indext) =>
-                    //           whiteSpaceWidth(5),
-                    //       itemCount: items.length),
-                    // ),
+                    SizedBox(
+                      height: 140,
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => NutrientsInfoItem(
+                                item: items[index],
+                                index: index,
+                              ),
+                          separatorBuilder: (context, indext) =>
+                              whiteSpaceWidth(5),
+                          itemCount: items.length),
+                    ),
                     whiteSpaceHeight(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,7 +96,6 @@ class IngredientItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    whiteSpaceHeight(5),
                     ListView.separated(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -105,7 +104,7 @@ class IngredientItem extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             whiteSpaceHeight(10),
                         itemCount: recipe.ingredient.length),
-                    whiteSpaceHeight(5),
+                    whiteSpaceHeight(10),
                     Text(
                       StringsManager.instructions,
                       style: Theme.of(context)
@@ -115,7 +114,7 @@ class IngredientItem extends StatelessWidget {
                     ),
                     whiteSpaceHeight(5),
                     Text(
-                      removeUnWantedWords(recipe.instructions),
+                      recipe.instructions,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ],
@@ -126,14 +125,6 @@ class IngredientItem extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget whiteSpaceWidth(double width) {
-    return SizedBox(width: width);
-  }
-
-  Widget whiteSpaceHeight(double height) {
-    return SizedBox(height: height);
   }
 }
 
@@ -162,47 +153,46 @@ class BuildSliverAppBar extends StatelessWidget {
 }
 
 class NutrientsInfoItem extends StatelessWidget {
-  final List<NutrientInfo> items;
+  final NutrientInfo item;
   final int index;
-  const NutrientsInfoItem({Key? key, required this.items, required this.index})
+  const NutrientsInfoItem({Key? key, required this.item, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 70,
-      height: 100,
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(ValuesManager.v20),
-              border: Border.all(
-                color: Colors.blueGrey,
-                width: 0.5,
+    return Column(
+      children: [
+        Container(
+          height: 100,
+          width: 75,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(ValuesManager.v20),
+            border: Border.all(
+              color: Colors.blueGrey,
+              width: 1,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                  width: ValuesManager.v30,
+                  height: ValuesManager.v30,
+                  image: AssetImage(item.image),
+                  fit: BoxFit.cover),
+              whiteSpaceHeight(10),
+              Text(
+                item.value,
+                style: Theme.of(context).textTheme.headline6,
               ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image(
-                    width: ValuesManager.v20,
-                    height: ValuesManager.v20,
-                    image: AssetImage(items[index].image),
-                    fit: BoxFit.cover),
-                Text(
-                  items[index].value,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              ],
-            ),
+            ],
           ),
-          Center(
-            child: Text(items[index].kind,
-                style: Theme.of(context).textTheme.bodyText1),
-          ),
-        ],
-      ),
+        ),
+        Center(
+          child: Text(item.kind, style: Theme.of(context).textTheme.bodyText1),
+        ),
+      ],
     );
   }
 }
@@ -237,5 +227,3 @@ class IngredientsItems extends StatelessWidget {
     );
   }
 }
-
-

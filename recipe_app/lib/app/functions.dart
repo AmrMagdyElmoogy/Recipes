@@ -9,8 +9,8 @@ Widget noFavoritiesItem(BuildContext context) {
     mainAxisSize: MainAxisSize.min,
     children: [
       const Icon(
-        Icons.favorite_outlined,
-        color: Colors.red,
+        Icons.error_outline_rounded,
+        color: Colors.blueGrey,
         size: ValuesManager.v50,
       ),
       const SizedBox(
@@ -28,6 +28,20 @@ Widget noFavoritiesItem(BuildContext context) {
 }
 
 String removeUnWantedWords(String s) {
-  s.replaceAll(RegExp("<p>|</p>|<span>|</span>|<li>|</li>|<ol>|</ol>|"), "");
+  s.replaceAll(RegExp(r'<'), 'p');
+  s.replaceAll(RegExp(r">"), "");
+  s.replaceAll(RegExp(r"/"), "");
+  s.replaceAll(RegExp(r"ol"), "");
+  s.replaceAll(RegExp(r"li"), "");
+  s.replaceAll(RegExp(r"p"), "");
+  s.replaceAll(RegExp(r"span"), "");
   return s;
+}
+
+Widget whiteSpaceWidth(double width) {
+  return SizedBox(width: width);
+}
+
+Widget whiteSpaceHeight(double height) {
+  return SizedBox(height: height);
 }

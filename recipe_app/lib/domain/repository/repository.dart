@@ -6,10 +6,11 @@ import 'package:recipe_app/data/mappers/mappers.dart';
 abstract class Repository {
   Future<List<RecipeVegetarianOrDessert>> getRecipeVegetarian();
   Future<List<RecipeVegetarianOrDessert>> getDessert();
+  Future<List<IngredientSearch>> searchIngredient(String item);
 }
 
 class RepositoryImplementation extends Repository {
-  AppClientManager _appClientManager;
+  final AppClientManager _appClientManager;
   RepositoryImplementation(this._appClientManager);
   @override
   Future<List<RecipeVegetarianOrDessert>> getRecipeVegetarian() async {
@@ -25,5 +26,11 @@ class RepositoryImplementation extends Repository {
     return response
         .map((i) => RecipeVegetarianOrDessert.fromJson(i).elimnateNull())
         .toList();
+  }
+
+  @override
+  Future<List<IngredientSearch>> searchIngredient(String item) async {
+    final response = await _appClientManager.getAllIngredientsMatches(item);
+    return response.map((e) => IngredientSearch.fromJson(e)).toList();
   }
 }
