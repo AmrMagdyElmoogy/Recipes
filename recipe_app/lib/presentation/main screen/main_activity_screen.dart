@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,6 +6,7 @@ import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/presentation/resources/asset_manager.dart';
 import 'package:recipe_app/presentation/resources/color_manager.dart';
+import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
 
@@ -96,11 +98,12 @@ class _MainActivityScreenState extends State<MainActivityScreen> {
                   ),
                 ]),
           ),
-          
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              startCamera(context);
+            },
             child: const Image(
               image: AssetImage(AssetManager.scanIcon),
               fit: BoxFit.cover,
@@ -113,5 +116,12 @@ class _MainActivityScreenState extends State<MainActivityScreen> {
         );
       },
     );
+  }
+
+  Future<void> startCamera(BuildContext context) async {
+    final cameras = await availableCameras();
+    final camera = cameras.first;
+
+    final result = await Navigator.of(context).pushNamed(Routes.cameraView,arguments: camera);
   }
 }

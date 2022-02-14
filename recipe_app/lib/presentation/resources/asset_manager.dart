@@ -7,4 +7,5 @@ class AssetManager {
   static const String protein = 'assets/images/bean.png';
   static const String carbs = 'assets/images/wheat.png';
   static const String fat = 'assets/images/pizza_slice.png';
+  static const String forkKnife = 'assets/images/restaurant.png';
 }

@@ -40,4 +40,5 @@ class StringsManager {
   static const String instructions = 'Instructions';
   static const String item = 'Item';
   static const String inYourFridge = 'What\'s in your fridge?';
+  static const String recipeLens = 'Recipe Lens';
 }

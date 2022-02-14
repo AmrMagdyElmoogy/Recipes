@@ -1,6 +1,7 @@
 class ValuesManager {
   static const double vOpicity = 0.8;
   static const double vElevation = 2;
+  static const double v1 = 1;
   static const double v5 = 5;
   static const double v10 = 10;
   static const double v15 = 15;
