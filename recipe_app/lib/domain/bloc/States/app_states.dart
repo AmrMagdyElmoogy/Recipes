@@ -17,6 +17,8 @@ enum RecipeStateStatus {
 }
 enum IngredientSearchStatus { inital, loading, success, failure }
 
+enum CameraTakenStatus { inital, loading, success, failure }
+
 class RecipeStates {
   RecipeStateStatus? status;
   List<RecipeVegetarianOrDessert>? recipesOfVegatrian;
@@ -60,9 +62,9 @@ class IngredientSearchStates {
   Exception? exception;
 
   IngredientSearchStates({
-     this.status,
-     this.items,
-     this.exception,
+    this.status,
+    this.items,
+    this.exception,
   });
 
   IngredientSearchStates copyWith({
@@ -74,5 +76,28 @@ class IngredientSearchStates {
         status: status ?? this.status,
         items: items ?? this.items,
         exception: exception ?? this.exception);
+  }
+}
+
+class CameraStates {
+  CameraTakenStatus? status;
+  List<String>? expectedLabels;
+  Exception? exception;
+
+  CameraStates({
+    this.status,
+    this.expectedLabels,
+    this.exception,
+  });
+
+  CameraStates copyWith(
+      {CameraTakenStatus? cameraTakenStatus,
+      List<String>? expectedLabels,
+      Exception? exception}) {
+    return CameraStates(
+      status: cameraTakenStatus ?? this.status,
+      expectedLabels: expectedLabels ?? this.expectedLabels,
+      exception: exception ?? this.exception,
+    );
   }
 }

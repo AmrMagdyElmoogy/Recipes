@@ -8,4 +8,5 @@ class AssetManager {
   static const String carbs = 'assets/images/wheat.png';
   static const String fat = 'assets/images/pizza_slice.png';
   static const String forkKnife = 'assets/images/restaurant.png';
+  static const String searchAnimation = 'assets/images/search_anim.json';
 }

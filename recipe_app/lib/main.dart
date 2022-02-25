@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/app/app_perfs.dart';
+import 'package:recipe_app/domain/bloc/Cubits/camera_cubit.dart';
 import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
 import 'package:recipe_app/domain/bloc/Cubits/search_cubit.dart';
 import 'package:recipe_app/domain/bloc/bloc_observer.dart';
@@ -10,6 +11,7 @@ import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/theme_manager.dart';
 import 'package:recipe_app/presentation/search/search_ingredient.dart';
 import 'package:recipe_app/presentation/splash/splash_screen.dart';
+import 'package:recipe_app/presentation/take_picture/take_picture_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +42,10 @@ class MyApp extends StatelessWidget {
               ..initalizeFavoritiesIndexesOfDessert(),
             child: const HomeScreen(),
           ),
-          BlocProvider(create: (_)=> SearchCubit(),child : const SearchIngredient()),
+          BlocProvider(
+              create: (_) => SearchCubit(), child: const SearchIngredient()),
+          BlocProvider(
+              create: (_) => CameraCubit(), child: const TakePictureView()),
         ],
         child: MaterialApp(
           theme: light,

@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
@@ -45,3 +46,14 @@ Widget whiteSpaceWidth(double width) {
 Widget whiteSpaceHeight(double height) {
   return SizedBox(height: height);
 }
+
+String prepareInitialUrlWebView(List<String> a)
+{ 
+  String result = "";
+  for(int i=0; i<a.length; i++)
+  {
+    result+= a[i];
+  } 
+  return result;
+}
+

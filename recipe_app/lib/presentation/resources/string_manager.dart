@@ -1,5 +1,6 @@
 class StringsManager {
   static const String baseUrl = 'https://api.spoonacular.com/recipes';
+  static const String initalUrl = 'https://www.google.com/search?tbm=isch&q=';
   static const String endPointRandom = '/random';
   static const String endPointFindByIngredient = '/findByIngredients';
   static const String vegetarian = 'vegetarian';
@@ -41,4 +42,5 @@ class StringsManager {
   static const String item = 'Item';
   static const String inYourFridge = 'What\'s in your fridge?';
   static const String recipeLens = 'Recipe Lens';
+  static const String loadingMessage = 'Wait a moment .. ';
 }
