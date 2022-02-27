@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
+import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
 import 'package:recipe_app/presentation/resources/font_manager.dart';
@@ -18,7 +18,7 @@ class VegetarianLayout extends StatefulWidget {
 class _VegetarianLayoutState extends State<VegetarianLayout> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainActivityCubit, RecipeStates>(
+    return BlocConsumer<RecipeCubit, RecipeStates>(
       listener: (context, state) {
         if (state.status == RecipeStateStatus.vegatrianLoading ||
             state.status == RecipeStateStatus.dessertLoading) {
@@ -28,7 +28,7 @@ class _VegetarianLayoutState extends State<VegetarianLayout> {
         }
       },
       builder: (context, state) {
-        MainActivityCubit cubit = BlocProvider.of<MainActivityCubit>(context);
+        RecipeCubit cubit = BlocProvider.of<RecipeCubit>(context);
         return state.recipesOfVegatrian != null
             ? ListView.separated(
                 scrollDirection: Axis.horizontal,
@@ -53,7 +53,7 @@ class _VegetarianLayoutState extends State<VegetarianLayout> {
 class VegatrianItem extends StatelessWidget {
   final RecipeVegetarianOrDessert recipe;
   final int index;
-  final MainActivityCubit cubit;
+  final RecipeCubit cubit;
   final RecipeStates state;
   const VegatrianItem(
       {Key? key,
@@ -157,7 +157,3 @@ class VegatrianItem extends StatelessWidget {
     );
   }
 }
-
-// Widget vegatrianItem(RecipeVegetarianOrDessert rv, BuildContext context) {
-  
-// }

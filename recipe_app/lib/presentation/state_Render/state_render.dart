@@ -4,6 +4,8 @@ import 'package:recipe_app/app/functions.dart';
 import 'package:recipe_app/presentation/resources/asset_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 
+import '../resources/value_manager.dart';
+
 enum StateRenderState {
   loading,
 }
@@ -57,13 +59,13 @@ class _LoadingViewState extends State<LoadingView>
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      elevation: 1,
+      elevation: ValuesManager.v1,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(ValuesManager.v20),
       ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(ValuesManager.v20),
           color: Colors.white,
         ),
         child: Column(
@@ -73,7 +75,7 @@ class _LoadingViewState extends State<LoadingView>
             Lottie.asset(
               AssetManager.searchAnimation,
               controller: _lottieAnimation,
-              height: 150,
+              height: ValuesManager.v150,
               repeat: true,
               onLoaded: (composition) {
                 _lottieAnimation
@@ -86,7 +88,7 @@ class _LoadingViewState extends State<LoadingView>
               StringsManager.loadingMessage,
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            whiteSpaceHeight(10),
+            whiteSpaceHeight(ValuesManager.v10),
           ],
         ),
       ),

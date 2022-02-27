@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:recipe_app/domain/models/models.dart';
 
 enum RecipeStateStatus {
@@ -17,9 +18,9 @@ enum RecipeStateStatus {
 }
 enum IngredientSearchStatus { inital, loading, success, failure }
 
-enum CameraTakenStatus { inital, loading, success, failure }
+enum CameraTakenStatus { inital, loading, imageToken, success, failure }
 
-class RecipeStates {
+class RecipeStates  {
   RecipeStateStatus? status;
   List<RecipeVegetarianOrDessert>? recipesOfVegatrian;
   List<RecipeVegetarianOrDessert>? recipesOfDessert;
@@ -54,6 +55,9 @@ class RecipeStates {
           favoritiesRecipeDesColors ?? this.favoritiesRecipeDesColors,
     );
   }
+
+  // @override
+  // List<Object?> get props => [status,recipesOfDessert,recipesOfVegatrian,favoritiesRecipeDesColors,favoritiesRecipeVegColors];
 }
 
 class IngredientSearchStates {
@@ -80,23 +84,20 @@ class IngredientSearchStates {
 }
 
 class CameraStates {
-  CameraTakenStatus? status;
-  List<String>? expectedLabels;
+  CameraTakenStatus? cameraTakenStatus;
+  List<String>? lables;
   Exception? exception;
 
-  CameraStates({
-    this.status,
-    this.expectedLabels,
-    this.exception,
-  });
+  CameraStates({this.cameraTakenStatus, this.lables, this.exception});
 
-  CameraStates copyWith(
-      {CameraTakenStatus? cameraTakenStatus,
-      List<String>? expectedLabels,
-      Exception? exception}) {
+  CameraStates copyWith({
+    CameraTakenStatus? cameraTakenStatus,
+    List<String>? lables,
+    Exception? exception,
+  }) {
     return CameraStates(
-      status: cameraTakenStatus ?? this.status,
-      expectedLabels: expectedLabels ?? this.expectedLabels,
+      cameraTakenStatus: cameraTakenStatus ?? this.cameraTakenStatus,
+      lables: lables ?? this.lables,
       exception: exception ?? this.exception,
     );
   }

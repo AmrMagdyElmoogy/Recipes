@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
+import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
 import 'package:recipe_app/presentation/resources/routes_manager.dart';
@@ -17,7 +17,7 @@ class DessertLayout extends StatefulWidget {
 class _DessertLayoutState extends State<DessertLayout> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainActivityCubit, RecipeStates>(
+    return BlocConsumer<RecipeCubit, RecipeStates>(
       listener: (context, state) {
         if (state.status == RecipeStateStatus.vegatrianLoading ||
             state.status == RecipeStateStatus.dessertLoading) {
@@ -27,7 +27,7 @@ class _DessertLayoutState extends State<DessertLayout> {
         }
       },
       builder: (context, state) {
-        MainActivityCubit cubit = BlocProvider.of<MainActivityCubit>(context);
+        RecipeCubit cubit = BlocProvider.of<RecipeCubit>(context);
         return state.recipesOfDessert!.isNotEmpty
             ? ListView.separated(
                 scrollDirection: Axis.horizontal,
@@ -52,7 +52,7 @@ class _DessertLayoutState extends State<DessertLayout> {
 class DessertItem extends StatelessWidget {
   final RecipeVegetarianOrDessert recipe;
   final int index;
-  final MainActivityCubit cubit;
+  final RecipeCubit cubit;
   final RecipeStates state;
   const DessertItem(
       {Key? key,
@@ -68,7 +68,8 @@ class DessertItem extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(Routes.ingredient);
+            Navigator.of(context)
+                .pushNamed(Routes.ingredient, arguments: recipe);
           },
           child: Hero(
             tag: recipe.id,

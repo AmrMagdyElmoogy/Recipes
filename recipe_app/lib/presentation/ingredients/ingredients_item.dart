@@ -34,7 +34,7 @@ class IngredientItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 250,
+                          width: ValuesManager.v250,
                           child: Text(
                             recipe.title,
                             style: Theme.of(context)
@@ -54,7 +54,7 @@ class IngredientItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    whiteSpaceHeight(5),
+                    whiteSpaceHeight(ValuesManager.v5),
                     Text(
                       StringsManager.descriptionOfReicpe,
                       style: Theme.of(context)
@@ -62,9 +62,9 @@ class IngredientItem extends StatelessWidget {
                           .caption!
                           .copyWith(color: Colors.grey),
                     ),
-                    whiteSpaceHeight(10),
+                    whiteSpaceHeight(ValuesManager.v10),
                     SizedBox(
-                      height: 140,
+                      height: ValuesManager.v140,
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => NutrientsInfoItem(
@@ -72,10 +72,10 @@ class IngredientItem extends StatelessWidget {
                                 index: index,
                               ),
                           separatorBuilder: (context, indext) =>
-                              whiteSpaceWidth(5),
+                              whiteSpaceWidth(ValuesManager.v5),
                           itemCount: items.length),
                     ),
-                    whiteSpaceHeight(10),
+                    whiteSpaceHeight(ValuesManager.v10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -102,9 +102,9 @@ class IngredientItem extends StatelessWidget {
                         itemBuilder: (context, index) => IngredientsItems(
                             ingredient: recipe.ingredient, index: index),
                         separatorBuilder: (context, index) =>
-                            whiteSpaceHeight(10),
+                            whiteSpaceHeight(ValuesManager.v10),
                         itemCount: recipe.ingredient.length),
-                    whiteSpaceHeight(10),
+                    whiteSpaceHeight(ValuesManager.v10),
                     Text(
                       StringsManager.instructions,
                       style: Theme.of(context)
@@ -112,7 +112,7 @@ class IngredientItem extends StatelessWidget {
                           .headline1!
                           .copyWith(color: Colors.black),
                     ),
-                    whiteSpaceHeight(5),
+                    whiteSpaceHeight(ValuesManager.v5),
                     Text(
                       recipe.instructions,
                       style: Theme.of(context).textTheme.bodyText1,
@@ -135,14 +135,10 @@ class BuildSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 500,
+      expandedHeight: ValuesManager.v500,
       pinned: true,
       stretch: true,
       flexibleSpace: FlexibleSpaceBar(
-        // title: Text(
-        //   'Ingredients',
-        //   style: Theme.of(context).textTheme.headline6,
-        // ),
         background: Hero(
           tag: recipe.id,
           child: Image(image: NetworkImage(recipe.img), fit: BoxFit.cover),
@@ -163,13 +159,13 @@ class NutrientsInfoItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 100,
-          width: 75,
+          height: ValuesManager.v100,
+          width:  ValuesManager.v75,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(ValuesManager.v20),
             border: Border.all(
               color: Colors.blueGrey,
-              width: 1,
+              width: ValuesManager.v75,
             ),
           ),
           child: Column(
@@ -181,7 +177,7 @@ class NutrientsInfoItem extends StatelessWidget {
                   height: ValuesManager.v30,
                   image: AssetImage(item.image),
                   fit: BoxFit.cover),
-              whiteSpaceHeight(10),
+              whiteSpaceHeight(ValuesManager.v10),
               Text(
                 item.value,
                 style: Theme.of(context).textTheme.headline6,

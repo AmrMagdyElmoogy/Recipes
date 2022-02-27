@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
+import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/presentation/resources/asset_manager.dart';
 import 'package:recipe_app/presentation/resources/color_manager.dart';
@@ -21,9 +21,9 @@ class _MainActivityScreenState extends State<MainActivityScreen> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainActivityCubit, RecipeStates>(
+    return BlocBuilder<RecipeCubit, RecipeStates>(
       builder: (context, state) {
-        var cubit = BlocProvider.of<MainActivityCubit>(context);
+        var cubit = BlocProvider.of<RecipeCubit>(context);
         return Scaffold(
           appBar: AppBar(
             title: Row(
@@ -122,6 +122,7 @@ class _MainActivityScreenState extends State<MainActivityScreen> {
     final cameras = await availableCameras();
     final camera = cameras.first;
 
-    final result = await Navigator.of(context).pushNamed(Routes.cameraView,arguments: camera);
+    final result = await Navigator.of(context)
+        .pushNamed(Routes.cameraView, arguments: camera);
   }
 }

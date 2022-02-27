@@ -39,6 +39,7 @@ class StringsManager {
       'This fresh, easy recipe makes a filling lunch or fun dinner';
   static const String ingredients = 'Ingredients';
   static const String instructions = 'Instructions';
+  static const String seeMore = 'See More';
   static const String item = 'Item';
   static const String inYourFridge = 'What\'s in your fridge?';
   static const String recipeLens = 'Recipe Lens';

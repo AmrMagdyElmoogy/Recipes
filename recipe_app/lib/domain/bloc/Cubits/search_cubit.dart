@@ -11,6 +11,11 @@ class SearchCubit extends Cubit<IngredientSearchStates> {
   final RepositoryImplementation _repository =
       RepositoryImplementation(AppClientManager());
 
+  @override
+  void onChange(Change<IngredientSearchStates> change) {
+    super.onChange(change);
+    print(change.currentState.status);
+  }
   Future<void> search(String items) async {
     emit(IngredientSearchStates(status: IngredientSearchStatus.loading));
     try {

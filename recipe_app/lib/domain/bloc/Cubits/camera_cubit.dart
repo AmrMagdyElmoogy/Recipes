@@ -6,7 +6,7 @@ import 'package:recipe_app/domain/bloc/States/app_states.dart';
 class CameraCubit extends Cubit<CameraStates> {
   CameraCubit()
       : super(
-          CameraStates(status: CameraTakenStatus.inital),
+          CameraStates(cameraTakenStatus: CameraTakenStatus.inital),
         );
 
   XFile? image;
@@ -15,18 +15,25 @@ class CameraCubit extends Cubit<CameraStates> {
   List<ImageLabel> labels = [];
   List<String> expectedLabels = [];
 
+  @override
+  void onChange(Change<CameraStates> change) {
+    super.onChange(change);
+    print(change.currentState.cameraTakenStatus);
+  }
+
   Future<void> takeImage(
       CameraController cameraController, Future<void> init) async {
     try {
       await init;
       image = await cameraController.takePicture();
+      emit(state.copyWith(cameraTakenStatus: CameraTakenStatus.imageToken));
     } catch (e) {
       print(e);
     }
   }
 
   Future<void> applyImageLabelling() async {
-    emit(state.copyWith(cameraTakenStatus: CameraTakenStatus.loading));
+    emit(CameraStates(cameraTakenStatus: CameraTakenStatus.loading));
     expectedLabels.clear();
     try {
       inputImage = InputImage.fromFilePath(image!.path);
@@ -39,9 +46,11 @@ class CameraCubit extends Cubit<CameraStates> {
           expectedLabels.add(text);
         }
       }
-      emit(state.copyWith(
-          cameraTakenStatus: CameraTakenStatus.success,
-          expectedLabels: expectedLabels));
+      emit(
+        CameraStates(
+            cameraTakenStatus: CameraTakenStatus.success,
+            lables: expectedLabels),
+      );
     } on Exception catch (e) {
       emit(state.copyWith(
           cameraTakenStatus: CameraTakenStatus.failure, exception: e));

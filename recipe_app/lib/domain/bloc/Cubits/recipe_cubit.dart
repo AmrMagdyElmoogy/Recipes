@@ -10,8 +10,8 @@ import 'package:recipe_app/presentation/favourites/favourites.dart';
 import 'package:recipe_app/presentation/home/home.dart';
 import 'package:recipe_app/presentation/search/search_ingredient.dart';
 
-class MainActivityCubit extends Cubit<RecipeStates> {
-  MainActivityCubit()
+class RecipeCubit extends Cubit<RecipeStates> {
+  RecipeCubit()
       : super(
           RecipeStates(status: RecipeStateStatus.inital),
         );

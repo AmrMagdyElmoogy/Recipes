@@ -2,6 +2,7 @@ class ValuesManager {
   static const double vOpicity = 0.8;
   static const double vElevation = 2;
   static const double v1 = 1;
+  static const double v3 = 3;
   static const double v5 = 5;
   static const double v10 = 10;
   static const double v15 = 15;
@@ -12,6 +13,7 @@ class ValuesManager {
   static const double v50 = 50;
   static const double v60 = 60;
   static const double v70 = 70;
+  static const double v75 = 75;
   static const double v80 = 80;
   static const double v90 = 90;
   static const double v100 = 100;
@@ -30,4 +32,5 @@ class ValuesManager {
   static const double v250 = 250;
   static const double v280 = 280;
   static const double v300 = 300;
+  static const double v500 = 500;
 }

@@ -1,7 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
+import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/presentation/home/vegetarian_layout.dart';
 import 'package:recipe_app/presentation/resources/asset_manager.dart';
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: ValuesManager.v16),
-      child: BlocConsumer<MainActivityCubit, RecipeStates>(
+      child: BlocConsumer<RecipeCubit, RecipeStates>(
         listener: (context, state) {
           // TODO: implement listener
         },

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/app/app_perfs.dart';
 import 'package:recipe_app/domain/bloc/Cubits/camera_cubit.dart';
-import 'package:recipe_app/domain/bloc/Cubits/main_activity_cubit.dart';
+import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/Cubits/search_cubit.dart';
 import 'package:recipe_app/domain/bloc/bloc_observer.dart';
 import 'package:recipe_app/presentation/home/home.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             lazy: false,
-            create: (_) => MainActivityCubit()
+            create: (_) => RecipeCubit()
               ..getRecipeVegetarianElements()
               ..getRecipeDessertElements()
               ..initalizeFavoritiesIndexesOfVegatarian()

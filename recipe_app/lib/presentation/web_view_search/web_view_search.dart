@@ -13,9 +13,14 @@ class WebViewSearch extends StatefulWidget {
 }
 
 class _WebViewSearchState extends State<WebViewSearch> {
+  late WebViewController _webViewController;
   @override
   Widget build(BuildContext context) {
     return WebView(
+      onWebViewCreated: (controller) {
+        _webViewController = controller;
+      },
+      
       initialUrl: StringsManager.initalUrl +
           prepareInitialUrlWebView(widget.expectedLables),
       javascriptMode: JavascriptMode.unrestricted,
