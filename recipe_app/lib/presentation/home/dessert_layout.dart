@@ -145,10 +145,10 @@ class DessertItem extends StatelessWidget {
                           onPressed: () {
                             if (state.favoritiesRecipeDesColors![index] ==
                                 StringsManager.trueString) {
-                                  box.add(recipe);
+                                  box.put(recipe.id ,recipe);
                               cubit.settingFavoritiesItemsOfDessert(index);
                             } else {
-                              box.delete(recipe);
+                              box.delete(recipe.id);
                               cubit.settingFavoritiesItemsOfDessert(index);
                             }
                           },

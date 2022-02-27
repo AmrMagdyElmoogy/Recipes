@@ -57,13 +57,16 @@ class FavoriteItem extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(ValuesManager.v16),
-              child: Container(
-                width: double.infinity,
-                height: ValuesManager.v200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(ValuesManager.v16),
-                  image: DecorationImage(
-                      image: NetworkImage(recipe.img), fit: BoxFit.cover),
+              child: Hero(
+                tag : recipe.id,
+                child: Container(
+                  width: double.infinity,
+                  height: ValuesManager.v200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(ValuesManager.v16),
+                    image: DecorationImage(
+                        image: NetworkImage(recipe.img), fit: BoxFit.cover),
+                  ),
                 ),
               ),
             ),
@@ -106,9 +109,8 @@ class FavoriteItem extends StatelessWidget {
                             IconButton(
                               iconSize: ValuesManager.v30,
                               onPressed: () {
-                                //import cubit or use Box directly?!
-                                // NOT DELETING!!!!
-                                box.delete(recipe);
+
+                                box.delete(recipe.id);
                               },
                               icon: const Icon(
                                 Icons.favorite_outlined,

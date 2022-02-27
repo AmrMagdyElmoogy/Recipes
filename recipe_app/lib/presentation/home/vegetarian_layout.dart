@@ -139,11 +139,11 @@ class VegatrianItem extends StatelessWidget {
                             //Pass state and cubit as parameters
                             if (state.favoritiesRecipeVegColors![index]==
                                 StringsManager.falseString) { 
-                              box.add(recipe);
+                              box.put(recipe.id, recipe);
                               cubit.settingFavoritiesItemsOfVegatarian(index);
                             } else {
                               //NOT DELETING
-                              box.delete(recipe);
+                              box.delete(recipe.id);
                               cubit.settingFavoritiesItemsOfVegatarian(index);
                             }
                           },
