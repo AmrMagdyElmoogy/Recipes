@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
 import 'package:recipe_app/domain/models/models.dart';
 import 'package:recipe_app/presentation/resources/asset_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
@@ -20,3 +23,5 @@ final List<NutrientInfo> items = [
       kind: StringsManager.fat,
     ),
   ];
+
+const String DBName = "FavoritiesDB";

@@ -1,12 +1,23 @@
+import 'package:hive/hive.dart';
 import 'package:recipe_app/presentation/resources/asset_manager.dart';
 
+part 'models.g.dart';
+
+@HiveType(typeId: 0)
 class RecipeVegetarianOrDessert {
+  @HiveField(0)
   late double healthScore;
+  @HiveField(1)
   late List<Ingredients> ingredient;
+  @HiveField(2)
   late int id;
+  @HiveField(3)
   late String title;
+  @HiveField(4)
   late int readyInMinutes;
+  @HiveField(5)
   late String img;
+  @HiveField(6)
   late String instructions;
   RecipeVegetarianOrDessert(
       {required this.healthScore,
@@ -31,9 +42,15 @@ class RecipeVegetarianOrDessert {
   }
 }
 
+
+// Here Problem : Where is the adapter for ingredients?!
+@HiveType(typeId: 1)
 class Ingredients {
+  @HiveField(0)
   late String nameClean;
+  @HiveField(1)
   late String unit;
+  @HiveField(2)
   late double amount;
   Ingredients(
       {required this.nameClean, required this.unit, required this.amount});

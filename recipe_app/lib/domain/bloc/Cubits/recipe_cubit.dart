@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:recipe_app/app/app_perfs.dart';
 import 'package:recipe_app/data/network/app_api.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
@@ -9,6 +10,8 @@ import 'package:recipe_app/presentation/activity/activity.dart';
 import 'package:recipe_app/presentation/favourites/favourites.dart';
 import 'package:recipe_app/presentation/home/home.dart';
 import 'package:recipe_app/presentation/search/search_ingredient.dart';
+
+import '../../../app/constants.dart';
 
 class RecipeCubit extends Cubit<RecipeStates> {
   RecipeCubit()
@@ -23,6 +26,8 @@ class RecipeCubit extends Cubit<RecipeStates> {
     const SearchIngredient(),
   ];
 
+  // Box<RecipeVegetarianOrDessert> dataBox = Hive.box(DBName);
+
   @override
   void onChange(Change<RecipeStates> change) {
     super.onChange(change);
@@ -35,6 +40,20 @@ class RecipeCubit extends Cubit<RecipeStates> {
     navBarIndex = index;
     emit(state.copyWith(status: RecipeStateStatus.changeIndex));
     return navBarIndex;
+  }
+  
+  void initalizeFavoritiesIndexesOfDessert() {
+    List<String>? sharedList = List.filled(10, 'false');
+    emit(state.copyWith(
+        status: RecipeStateStatus.initalizeFavoritiesIndexes,
+        favoritiesRecipeDesColors: sharedList));
+  }
+
+  void initalizeFavoritiesIndexesOfVegatarian() {
+    List<String>? sharedList = List.filled(10, 'false');
+    emit(state.copyWith(
+        status: RecipeStateStatus.initalizeFavoritiesIndexes,
+        favoritiesRecipeVegColors: sharedList));
   }
 
   Future<void> getRecipeVegetarianElements() async {
@@ -62,31 +81,17 @@ class RecipeCubit extends Cubit<RecipeStates> {
     }
   }
 
-  void initalizeFavoritiesIndexesOfVegatarian() {
-    List<String>? sharedList = SharedPerfs.getIndexesOfFavorities('Vegatarian');
-    emit(state.copyWith(
-        status: RecipeStateStatus.initalizeFavoritiesIndexes,
-        favoritiesRecipeVegColors: sharedList));
-  }
-
   void settingFavoritiesItemsOfVegatarian(int index) {
     if (state.favoritiesRecipeVegColors![index] == 'false') {
       state.favoritiesRecipeVegColors![index] = 'true';
     } else {
       state.favoritiesRecipeVegColors![index] = 'false';
     }
-    SharedPerfs.initalizeIndexesOfFavorities(
-        'Vegetarian', state.favoritiesRecipeVegColors!);
+
     emit(state.copyWith(
       status: RecipeStateStatus.changefavoritiesRecipeVegColor,
+      favoritiesRecipeVegColors: state.favoritiesRecipeVegColors,
     ));
-  }
-
-  void initalizeFavoritiesIndexesOfDessert() {
-    List<String>? sharedList = SharedPerfs.getIndexesOfFavorities('Dessert');
-    emit(state.copyWith(
-        status: RecipeStateStatus.initalizeFavoritiesIndexes,
-        favoritiesRecipeDesColors: sharedList));
   }
 
   void settingFavoritiesItemsOfDessert(int index) {
@@ -95,22 +100,18 @@ class RecipeCubit extends Cubit<RecipeStates> {
     } else {
       state.favoritiesRecipeDesColors![index] = 'false';
     }
-    SharedPerfs.initalizeIndexesOfFavorities(
-        'Dessert', state.favoritiesRecipeDesColors!);
     emit(state.copyWith(
       status: RecipeStateStatus.changefavoritiesRecipeDesColor,
     ));
   }
 
-  List<RecipeVegetarianOrDessert> favorities = [];
-
   void addToFavorities(RecipeVegetarianOrDessert recipe) {
-    favorities.add(recipe);
+    // dataBox.add(recipe);
     emit(state.copyWith(status: RecipeStateStatus.refreshFavoritiesItems));
   }
 
   void deleteFromFavorities(RecipeVegetarianOrDessert recipe) {
-    favorities.remove(recipe);
+    // dataBox.delete(recipe);
     emit(state.copyWith(status: RecipeStateStatus.refreshFavoritiesItems));
   }
 }

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
+import 'package:recipe_app/main.dart';
 import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
+
+import '../../app/constants.dart';
 
 class DessertLayout extends StatefulWidget {
   const DessertLayout({Key? key}) : super(key: key);
@@ -15,6 +19,7 @@ class DessertLayout extends StatefulWidget {
 }
 
 class _DessertLayoutState extends State<DessertLayout> {
+ 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RecipeCubit, RecipeStates>(
@@ -36,6 +41,7 @@ class _DessertLayoutState extends State<DessertLayout> {
                       cubit: cubit,
                       state: state,
                       index: index,
+                      box: dataBox,
                     ),
                 separatorBuilder: (context, index) => const SizedBox(
                       width: ValuesManager.v10,
@@ -54,12 +60,14 @@ class DessertItem extends StatelessWidget {
   final int index;
   final RecipeCubit cubit;
   final RecipeStates state;
+  final Box box;
   const DessertItem(
       {Key? key,
       required this.recipe,
       required this.index,
       required this.cubit,
-      required this.state})
+      required this.state,
+      required this.box})
       : super(key: key);
 
   @override
@@ -135,12 +143,13 @@ class DessertItem extends StatelessWidget {
                         IconButton(
                           iconSize: ValuesManager.v30,
                           onPressed: () {
-                            cubit.settingFavoritiesItemsOfDessert(index);
                             if (state.favoritiesRecipeDesColors![index] ==
                                 StringsManager.trueString) {
-                              cubit.addToFavorities(recipe);
+                                  box.add(recipe);
+                              cubit.settingFavoritiesItemsOfDessert(index);
                             } else {
-                              cubit.deleteFromFavorities(recipe);
+                              box.delete(recipe);
+                              cubit.settingFavoritiesItemsOfDessert(index);
                             }
                           },
                           icon: state.favoritiesRecipeDesColors![index] ==

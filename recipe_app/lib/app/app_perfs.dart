@@ -6,11 +6,5 @@ class SharedPerfs {
     sharedPref = await SharedPreferences.getInstance();
   }
 
-  static void initalizeIndexesOfFavorities(String key, List<String> list) {
-    sharedPref!.setStringList(key, list);
-  }
 
-  static List<String>? getIndexesOfFavorities(String key) {
-    return sharedPref!.getStringList(key) ?? List.filled(10, 'false');
-  }
 }

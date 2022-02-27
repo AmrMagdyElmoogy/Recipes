@@ -1,13 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:recipe_app/app/functions.dart';
 import 'package:recipe_app/domain/bloc/Cubits/camera_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
-import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/presentation/state_Render/state_render.dart';
 

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:recipe_app/domain/bloc/Cubits/recipe_cubit.dart';
 import 'package:recipe_app/domain/bloc/States/app_states.dart';
 import 'package:recipe_app/domain/models/models.dart';
+import 'package:recipe_app/main.dart';
 import 'package:recipe_app/presentation/resources/font_manager.dart';
 import 'package:recipe_app/presentation/resources/routes_manager.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
+
+import '../../app/constants.dart';
 
 class VegetarianLayout extends StatefulWidget {
   const VegetarianLayout({Key? key}) : super(key: key);
@@ -16,6 +20,10 @@ class VegetarianLayout extends StatefulWidget {
 }
 
 class _VegetarianLayoutState extends State<VegetarianLayout> {
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RecipeCubit, RecipeStates>(
@@ -37,6 +45,7 @@ class _VegetarianLayoutState extends State<VegetarianLayout> {
                       index: index,
                       cubit: cubit,
                       state: state,
+                      box: dataBox,
                     ),
                 separatorBuilder: (context, index) => const SizedBox(
                       width: ValuesManager.v10,
@@ -55,12 +64,14 @@ class VegatrianItem extends StatelessWidget {
   final int index;
   final RecipeCubit cubit;
   final RecipeStates state;
+  final Box box;
   const VegatrianItem(
       {Key? key,
       required this.recipe,
       required this.index,
       required this.cubit,
-      required this.state})
+      required this.state,
+      required this.box})
       : super(key: key);
 
   @override
@@ -126,12 +137,14 @@ class VegatrianItem extends StatelessWidget {
                           iconSize: ValuesManager.v30,
                           onPressed: () {
                             //Pass state and cubit as parameters
-                            cubit.settingFavoritiesItemsOfVegatarian(index);
-                            if (state.favoritiesRecipeVegColors![index] ==
-                                StringsManager.trueString) {
-                              cubit.addToFavorities(recipe);
+                            if (state.favoritiesRecipeVegColors![index]==
+                                StringsManager.falseString) { 
+                              box.add(recipe);
+                              cubit.settingFavoritiesItemsOfVegatarian(index);
                             } else {
-                              cubit.deleteFromFavorities(recipe);
+                              //NOT DELETING
+                              box.delete(recipe);
+                              cubit.settingFavoritiesItemsOfVegatarian(index);
                             }
                           },
                           icon: state.favoritiesRecipeVegColors![index] ==
