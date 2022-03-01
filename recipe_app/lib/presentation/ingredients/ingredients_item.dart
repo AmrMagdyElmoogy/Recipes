@@ -158,36 +158,37 @@ class NutrientsInfoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: ValuesManager.v100,
-          width:  ValuesManager.v75,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(ValuesManager.v20),
-            border: Border.all(
-              color: Colors.blueGrey,
-              width: ValuesManager.v75,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                  width: ValuesManager.v30,
-                  height: ValuesManager.v30,
-                  image: AssetImage(item.image),
-                  fit: BoxFit.cover),
-              whiteSpaceHeight(ValuesManager.v10),
-              Text(
-                item.value,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ],
-          ),
-        ),
-        Center(
-          child: Text(item.kind, style: Theme.of(context).textTheme.bodyText1),
-        ),
+        // Container(
+        //   height: ValuesManager.v100,
+        //   width: ValuesManager.v75,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(ValuesManager.v20),
+        //     border: Border.all(
+        //       color: Colors.blueGrey,
+        //       width: ValuesManager.v75,
+        //     ),
+        //   ),
+        // child: Column(
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Image(
+        //         width: ValuesManager.v30,
+        //         height: ValuesManager.v30,
+        //         image: AssetImage(item.image),
+        //         fit: BoxFit.cover),
+        //     whiteSpaceHeight(ValuesManager.v10),
+        //     Text(
+        //       item.value,
+        //       style: Theme.of(context). textTheme.headline6,
+        //     ),
+        //   ],
+        // ),
+        Text('Is error here?'),
+
+        // Center(
+        //   child: Text(item.kind, style: Theme.of(context).textTheme.bodyText1),
+        // ),
       ],
     );
   }

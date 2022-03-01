@@ -44,4 +44,9 @@ class StringsManager {
   static const String inYourFridge = 'What\'s in your fridge?';
   static const String recipeLens = 'Recipe Lens';
   static const String loadingMessage = 'Wait a moment .. ';
+  static const String suggestionOfToday = 'Suggestion of Today';
+  static const String chefName = 'Chef Paul';
+  static const String recipeName = 'Salmon with Salad';
+  static const String letsTry = 'Let\'s Try';
+
 }

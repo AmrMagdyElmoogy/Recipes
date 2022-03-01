@@ -9,4 +9,8 @@ class AssetManager {
   static const String fat = 'assets/images/pizza_slice.png';
   static const String forkKnife = 'assets/images/restaurant.png';
   static const String searchAnimation = 'assets/images/search_anim.json';
+  static const String person = 'assets/images/person.jpg';
+  static const String salad = 'assets/images/salad.jpg';
+  static const String foodAnimation = 'assets/images/food.json';
+  static const String doneAnimation = 'assets/images/done.json';
 }
