@@ -21,11 +21,22 @@ class _ActivityState extends State<Activity> with TickerProviderStateMixin {
   int maxMinutes = 2;
   int seconds = 0;
   int page = 1;
+  int index = 0;
   var play = Icons.play_arrow;
   var pause = Icons.pause;
   var icon = Icons.play_arrow;
   bool ended = false;
-  double v = 120;
+  double v = 120; 
+  Map<int,int> times = {
+    2 : 0,
+    1 : 30, 
+    4 : 30,
+    3 : 30,
+  };
+  //continue here
+  List<String> comments = [
+    'Rub Salmon with olive oli, then sprinkle with the seasoning',
+  ];
   late AnimationController lottie;
   @override
   void initState() {
@@ -122,89 +133,103 @@ class _ActivityState extends State<Activity> with TickerProviderStateMixin {
                       ),
                     ),
                     whiteSpaceHeight(10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 40),
-                      child: Text(
-                        'Rub Salmon with olive oli, then sprinkle with the seasoning',
-                        style: Theme.of(context).textTheme.caption!.copyWith(
-                              color: Colors.grey,
+                    //here what i will do ? i want to make a list of comment recipe and seconds and minutes
+                    PageView(
+                      scrollDirection: Axis.horizontal,
+                      onPageChanged: (i)
+                      {
+                        index = i;
+                      },
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 40),
+                          child: Text(
+                            'Rub Salmon with olive oli, then sprinkle with the seasoning',
+                            style:
+                                Theme.of(context).textTheme.caption!.copyWith(
+                                      color: Colors.grey,
+                                    ),
+                          ),
+                        ),
+                        whiteSpaceHeight(10),
+                        SizedBox(
+                          width: 150,
+                          height: 150,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              CircularProgressIndicator(
+                                //here
+                                value: v / 120,
+                                strokeWidth: 4,
+                                valueColor: const AlwaysStoppedAnimation(
+                                    Color.fromARGB(255, 226, 110, 56)),
+                                backgroundColor: Colors.grey,
+                              ),
+                              Center(
+                                child: maxMinutes == 0 && seconds == 0
+                                    ? Lottie.asset(AssetManager.doneAnimation,
+                                        controller: lottie, onLoaded: (l) {
+                                        lottie
+                                          ..duration = l.duration
+                                          ..forward();
+                                      })
+                                    : Lottie.asset(AssetManager.foodAnimation,
+                                        controller: lottie, onLoaded: (l) {
+                                        lottie
+                                          ..duration = l.duration
+                                          ..forward()
+                                          ..repeat();
+                                      }),
+                              ),
+                            ],
+                          ),
+                        ),
+                        whiteSpaceHeight(10),
+                        Text(
+                          '${maxMinutes} : ${seconds}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                  color: Colors.pink,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25),
+                        ),
+                        whiteSpaceHeight(10),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(60),
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 248, 180, 149),
+                              width: 10,
                             ),
-                      ),
-                    ),
-                    whiteSpaceHeight(10),
-                    SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          CircularProgressIndicator(
-                            //here
-                            value: v / 120,
-                            strokeWidth: 4,
-                            valueColor: const AlwaysStoppedAnimation(
-                                Color.fromARGB(255, 226, 110, 56)),
-                            backgroundColor: Colors.grey,
                           ),
-                          Center(
-                            child: maxMinutes == 0 && seconds == 0
-                                ? Lottie.asset(AssetManager.doneAnimation,
-                                    controller: lottie, onLoaded: (l) {
-                                    lottie
-                                      ..duration = l.duration
-                                      ..forward();
-                                  })
-                                : Lottie.asset(AssetManager.foodAnimation,
-                                    controller: lottie, onLoaded: (l) {
-                                    lottie
-                                      ..duration = l.duration
-                                      ..forward()
-                                      ..repeat();
-                                  }),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (icon == play) {
+                                startTimer();
+                                setState(() {
+                                  icon = pause;
+                                });
+                              } else {
+                                stopTimer();
+                                setState(() {
+                                  icon = play;
+                                });
+                              }
+                            },
+                            child: Icon(icon, color: Colors.white, size: 35),
+                            style: ElevatedButton.styleFrom(
+                              primary: const Color.fromARGB(255, 226, 110, 56),
+                              shape: const CircleBorder(),
+                              fixedSize: const Size(66, 66),
+                              elevation: 1,
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                    whiteSpaceHeight(10),
-                    Text(
-                      '${maxMinutes} : ${seconds}',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: Colors.pink,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25),
-                    ),
-                    whiteSpaceHeight(10),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(60),
-                        border: Border.all(
-                          color: const Color.fromARGB(255, 248, 180, 149),
-                          width: 10,
                         ),
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (icon == play) {
-                            startTimer();
-                            setState(() {
-                              icon = pause;
-                            });
-                          } else {
-                            stopTimer();
-                            setState(() {
-                              icon = play;
-                            });
-                          }
-                        },
-                        child: Icon(icon, color: Colors.white, size: 35),
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 226, 110, 56),
-                          shape: const CircleBorder(),
-                          fixedSize: const Size(66, 66),
-                          elevation: 1,
-                        ),
-                      ),
+                      ],
                     ),
                   ],
                 )
