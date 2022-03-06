@@ -19,8 +19,20 @@ enum RecipeStateStatus {
 enum IngredientSearchStatus { inital, loading, success, failure }
 
 enum CameraTakenStatus { inital, loading, imageToken, success, failure }
+enum ActivityStatus {
+  inital,
+  initalAnimation,
+  startTimerFirst,
+  startTimerSecond,
+  iconChanged,
+  timerCancelation,
+  indexChanged,
+  barValueReinital,
+  endedOfSuggestionOfToday,
+  changeConstraintsOfContainer,
+}
 
-class RecipeStates  {
+class RecipeStates {
   RecipeStateStatus? status;
   List<RecipeVegetarianOrDessert>? recipesOfVegatrian;
   List<RecipeVegetarianOrDessert>? recipesOfDessert;
@@ -101,4 +113,9 @@ class CameraStates {
       exception: exception ?? this.exception,
     );
   }
+}
+
+class ActivityStates {
+  ActivityStatus? activityStatus;
+  ActivityStates({this.activityStatus});
 }
