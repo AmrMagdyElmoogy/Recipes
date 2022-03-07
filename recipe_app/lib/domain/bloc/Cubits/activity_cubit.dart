@@ -75,7 +75,7 @@ class ActivityCubit extends Cubit<ActivityStates> {
   }
 
   void reinitalBarValue() {
-    barValue = minutes[index] * 60;
+    barValue = minutes[index] * 60 + seconds[index].toDouble();
     emit(ActivityStates(activityStatus: ActivityStatus.barValueReinital));
   }
 
@@ -86,10 +86,10 @@ class ActivityCubit extends Cubit<ActivityStates> {
   }
 
   void changeConstraints() {
-    double widthPrimaryContainer = 0;
-    double heightPrimaryContainer = 0;
-    double widthSecondContainer = 0;
-    double heightSecondContainer = 0;
+     widthPrimaryContainer = 0;
+     heightPrimaryContainer = 0;
+     widthSecondContainer = 0;
+     heightSecondContainer = 0;
     emit(ActivityStates(
         activityStatus: ActivityStatus.changeConstraintsOfContainer));
   }

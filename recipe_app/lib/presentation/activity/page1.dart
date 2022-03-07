@@ -53,7 +53,9 @@ class _Page1State extends State<Page1> with TickerProviderStateMixin {
                 children: [
                   CircularProgressIndicator(
                     //here
-                    value: cubit.barValue / 120,
+                    value: cubit.barValue /
+                        (cubit.minutes[cubit.index] * 60 +
+                            cubit.seconds[cubit.index]),
                     strokeWidth: 4,
                     valueColor: const AlwaysStoppedAnimation(
                         Color.fromARGB(255, 226, 110, 56)),

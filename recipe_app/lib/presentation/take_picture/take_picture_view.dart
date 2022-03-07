@@ -7,6 +7,9 @@ import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/presentation/state_Render/state_render.dart';
+import 'package:recipe_app/presentation/web_view_search/web_view_search.dart';
+
+import '../resources/routes_manager.dart';
 
 class TakePictureView extends StatefulWidget {
   final CameraDescription? camera;
@@ -120,8 +123,10 @@ class _ShowButtomSheetViewState extends State<ShowButtomSheetView> {
                   widget.initalizeCameraControllerFuture);
               await cubit.applyImageLabelling();
               //TODO : uncompelete
-              // Navigator.of(context).pushNamed(Routes.searchWebView,
-              //     arguments: ['player','footable','stadium','ball','red','black','night']);
+              showModalBottomSheet(context: context, builder: (context){
+                return WebViewSearch(expectedLables: state.lables!);
+              });
+
             },
             child: Container(
               width: ValuesManager.v100,
