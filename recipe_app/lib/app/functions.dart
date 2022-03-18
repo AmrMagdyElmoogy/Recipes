@@ -10,7 +10,6 @@ import 'package:recipe_app/presentation/resources/value_manager.dart';
 
 
 
- 
 Widget noFavoritiesItem(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
