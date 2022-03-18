@@ -2,7 +2,15 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_app/presentation/resources/string_manager.dart';
 import 'package:recipe_app/presentation/resources/value_manager.dart';
+ 
 
+
+
+
+
+
+
+ 
 Widget noFavoritiesItem(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
